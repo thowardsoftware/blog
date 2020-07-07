@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::site-head">
+	<title>Comfy Blog Home</title>
+</head>
+<body>
+	<!-- Header -->
+	<header th:replace="layout::site-header"></header>
+	<br>
+
+	<!-- Page Header -->
+	<header class="masthead" style="background-image: url('img/home.jpg')">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="site-heading">
+						<h1>Comfy Blog</h1>
+						<span class="subheading">A Blog for Software Engineers</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Page Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-10 mx-auto">
+				<h1 class="my-4">Welcome, <b sec:authentication="name"></b></h1>
+				<h3>Recent Posts</h3>
+				<br>
+				<main id="posts">
+					<article th:each="p : ${latest3Posts}">
+						<div class="card mb-4">
+							<!--<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">-->
+							<div class="card-body">
+								<h2 class="title" th:text="${p.title}">Post Title</h2>
+								<p class="content" style="float: left;
+								height: 50px;
+								width: 100%;
+								line-height: 50px;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;" th:utext="${p.body}">
+								Post Content
+								</p>
+								<br>
+								<a href="#" class="btn btn-secondary" th:href="@{/posts/view/{id}/(id=${p.id})}">Read</a>
+							</div>
+
+							<div class="card-footer text-muted">
+								<div class="date">
+								<i>Posted on</i>
+								<span th:text="${#dates.format(p.date, 'MMM dd, yyyy')}">Jan 10, 2020</span>
+								<span th:if="${p.author}" th:remove="tag">
+									<i>by</i>
+									<span th:text="${p.author.fullName != null ? p.author.fullName : p.author.userName}">Terrell Howard</span>
+								</span>
+								</div>
+							</div>
+						</div>
+					</article>
+				</main>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Layout Footer -->	
+	<footer th:replace="layout::site-footer"></footer>
+</body>
+</html>

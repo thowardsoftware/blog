@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout::site-head">
+	<title>Comfy Blog Register</title>
+</head>
+
+<body>
+	<!-- Header -->
+	<header th:replace="layout::site-header"></header>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Page Content -->
+	<section class="container-fluid">
+		<section class="row justify-content-center">
+		  <section class="container row justify-content-center">
+			<form action="#" th:action="@{/users/register}" th:object="${user}" method="post" class="form col-md-5 col-md-offset-7">
+				<!-- Success Alert -->
+				<div class="form-group">
+					<div th:class="${successMessage} ? 'alert alert-secondary' : ''" th:text="${successMessage}"></div>
+				</div>
+				<h4 class="text-center font-weight-bold">Register</h4>
+				<br>
+				<!-- Username -->
+				<div class="form-group">
+					<label for="username">Username</label>				
+					<input type="text" th:field="*{username}" placeholder="Username" th:class="${#fields.hasErrors('username') ? 'form-control is-invalid' : 'form-control'}" />
+					<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div> 
+				</div>
+				<!-- Password -->
+				<div class="form-group">
+					<label for="username">Password</label>
+					<input type="password" th:field="*{passwordHash}" placeholder="Password" th:class="${#fields.hasErrors('passwordHash') ? 'form-control is-invalid' : 'form-control'}" /> 
+					<div th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}" class="invalid-feedback"></div>
+				</div>
+				<!-- Full Name-->
+				<div class="form-group">
+					<label for="username">Full Name</label>
+					<input type="text" th:field="*{fullName}" placeholder="Full Name" th:class="${#fields.hasErrors('fullName') ? 'form-control is-invalid' : 'form-control'}" />
+					<label th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="invalid-feedback"></label> 
+				</div>
+				<br>
+				<!-- Button -->
+				<div class="form-group clearfix">
+					<button type="submit" class="btn btn-secondary btn-block">Register</button>
+				</div>
+				<br>
+				<br>
+			</form>
+		  </section>
+		</section>
+	  </section>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	
+	  <!-- Footer -->
+	<footer th:replace="layout::site-footer"></footer>
+</body>
+</html>

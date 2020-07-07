@@ -1,0 +1,125 @@
+/*
+body {
+  padding:0px;
+  font-size: 20px;
+  color: #212529;
+  font-family: 'Lora', 'Times New Roman', serif;
+} */
+
+body>header {
+	background: #eee;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+body>header>a>img, body>header a {
+display: inline-block;
+vertical-align: middle;
+padding: 0px 5px;
+font-size: 1.2em;
+}
+
+/* Style footer */
+body>footer {
+background: #eee;
+padding: 5px;
+margin: 10px 0;
+margin-bottom: 0;
+text-align: center;
+}
+
+/* Active Class Navigation */
+.active{
+  background-color:rgba(122, 122, 122, 0.308);
+}
+
+/* Style All */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Header */
+header.masthead {
+  margin-bottom: 50px;
+  background: no-repeat center center;
+  background-color: #868e96;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover;
+}
+
+/* Style Overlay */
+header.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #212529;
+  opacity: 0.5;
+}
+
+/* Style Header & Text Color */
+header.masthead .page-heading,
+header.masthead .post-heading,
+header.masthead .site-heading {
+  padding: 200px 0 150px;
+  color: white;
+}
+
+/* Media Query */
+@media only screen and (min-width: 768px) {
+  header.masthead .page-heading,
+  header.masthead .post-heading,
+  header.masthead .site-heading {
+    padding: 200px 0;
+  }
+}
+
+/* Center Header Text */
+header.masthead .page-heading,
+header.masthead .site-heading {
+  text-align: center;
+}
+
+/* Style Header Font */
+header.masthead .page-heading .subheading,
+header.masthead .site-heading .subheading {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.1;
+  display: block;
+  margin: 10px 0 0;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Media Query for Header Font & Buttons */
+@media only screen and (min-width: 768px) {
+  header.masthead .page-heading h1,
+  header.masthead .site-heading h1 {
+    font-size: 80px;
+  }
+
+  /* Buttons */
+  .btn {
+    font-size: 14px;
+    font-weight: 800;
+    padding: 15px 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 0;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .btn-lg {
+    font-size: 16px;
+    padding: 25px 35px;
+  }
+
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::site-head">
+	<title>Comfy Blog Users</title>
+</head>
+<body>	
+	<!-- Header -->
+	<header th:replace="layout::site-header"></header>
+	<br>
+
+	<!-- Page Header -->
+	<header class="masthead" style="background-image: url('img/users.jpg')">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="site-heading">
+						<h1>Bloggineers</h1>
+						<span class="subheading">Fellow Developers</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<!-- Page Content -->
+	<div class="container">		
+		<table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th>ID</th>
+					<th>User Name</th>
+					<th>Full Name</th>			
+					<th>Posts</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="u : ${users}">
+					<td th:text="${u.id}"></td>
+					<td th:text="${u.username}"></td>
+					<td th:text="${u.fullName}"></td>			
+					<td th:text="${#lists.size(u.posts)}"></td>			
+				</tr>
+			</tbody>
+		</table>
+
+		<br>
+		<br>
+		<div class="row">			
+			<div class="col-md-12">				
+				<ul class="pagination justify-content-center">
+			        <li th:class="${users.number eq 0} ? 'page-item disabled' : 'page-item'">
+			            <a class="page-link" th:if="${not users.first}" th:href="@{${'/users'}(page=${users.number-1})}" style="color: gray;">&laquo;</a>
+			            <a class="page-link" th:if="${users.first}" href="#">&laquo;</a>
+			        </li>
+			
+			        <li th:each="pageNo : ${#numbers.sequence(0, users.totalPages - 1)}" th:class="${users.number eq pageNo} ? 'page-item active' : 'page-item'">
+			            <a class="page-link" th:if="${users.number  eq pageNo}" href="#" style="background-color: gray; border-color: rgb(175, 168, 168);">
+			                <span th:text="${pageNo + 1}"></span>
+			            </a>
+			            <a class="page-link" th:if="${not (users.number  eq pageNo)}" style="background-color: rgba(128, 128, 128, 0.712); color: white;" th:href="@{${'/users'}(page=${pageNo})}">
+			                <span th:text="${pageNo + 1}"></span>
+			            </a>
+					</li>
+					
+			        <li th:class="${users.number + 1 ge users.totalPages} ? 'page-item disabled' : 'page-item'">
+						<a class="page-link" th:if="${not users.last}" th:href="@{${'/users'}(page=${users.number+1})}" style="color: gray;">&raquo;</a>
+			            <a class="page-link" th:if="${users.last}" href="#">&raquo;</a>
+			        </li>
+				</ul>							
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Footer -->	
+	<footer th:replace="layout::site-footer"></footer>	
+
+	<!-- jQuery for Active Class Navigation-->	
+	<script> 
+		$(function(){
+			var current_page_URL = location.href;
+			$( "a" ).each(function() {
+				if ($(this).attr("href") !== "#") {
+					var target_URL = $(this).prop("href");
+					if (target_URL == current_page_URL) {
+						$('nav a').parents('li, ul').removeClass('active');
+						$(this).parent('li').addClass('active');
+						return false;
+					}
+				}
+			});
+		});
+	</script> 
+</body>
+</html>

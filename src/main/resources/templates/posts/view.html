@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::site-head">
+  <title th:text="${post.title}">View Post</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <header th:replace="layout::site-header"></header>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+
+      <!-- Post-->
+      <div class="col-lg-8 col-md-12 mx-auto">
+        <main id="posts">
+          <article>
+            <h1 class="title" th:text="${post.title}">Post Title</h1>
+            <p class="lead">
+              by
+              <a href="#" style="color: gray; font-weight: bold;" th:text="${post.author.fullName != null ? post.author.fullName : post.author.userName}"></a>
+            </p>
+            <hr>
+            <div class="date">
+              <i>Posted on</i>
+              <span style="color: gray; font-weight: bold;" th:text="${#dates.format(post.date, 'MMM dd, yyyy')}">Jan 10, 2020</span>
+          </div>
+          <hr>
+          <p class="content" th:utext="${post.body}">Post content</p>
+        </article>
+      </main>
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4" style="">
+      <!-- Categories Widget -->
+      <div class="card my-3">
+        <h5 class="card-header">Developer Resources</h5>
+        <div class="card-body">
+          <div class="row">
+            <!-- First Column-->
+            <div class="col-lg-12">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf" style="color: gray;">HTML Cheatsheet</a>
+                </li>
+                <li>
+                  <a href="https://web.stanford.edu/group/csp/cs21/csscheatsheet.pdf" style="color: gray;">CSS Cheatsheet</a>
+                </li>
+                <li>
+                  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" style="color: gray;">JavaScript Reference</a>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Categories Widget -->
+      <div class="card my-3">
+        <h5 class="card-header">General Information</h5>
+        <div class="card-body">
+          <div class="row">
+            <!-- First Column-->
+            <div class="col-lg-12">
+              <ul class="list-unstyled mb-0">
+                <li>
+                  <a href="https://www.computer.org/education/code-of-ethics" style="color: gray;">Code of Ethics</a>
+                </li>
+                <li>
+                  <a href="https://www.tiobe.com/tiobe-index/" style="color: gray;">TIOBE Index</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div> <!-- End Sidebar Widgets Column -->
+
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <!-- Footer -->
+  <footer th:replace="layout::site-footer"></footer>
+</body>
+</html>

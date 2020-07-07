@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout::site-head">
+	<title>Comfy Blog Login</title>
+</head>
+
+<body>
+	<!-- Header -->
+	<header th:replace="layout::site-header"></header>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Page Content -->
+	<section class="container-fluid">
+		<section class="row justify-content-center">
+		  <section class="col-12 col-sm-6 col-md-4">
+			<form class="form-container" method="post" th:action="@{/users/login}">
+			<h4 class="text-center font-weight-bold"> Login </h4>
+			<br>
+			<!-- Username -->
+			<div class="form-group">
+			  <label label for="username">Username</label>
+			   <input type="text" id="username" name="username" placeholder="Username"  class="form-control">
+			</div>
+			<!-- Password -->
+			<div class="form-group">
+			  <label for="password">Password</label>
+			  <input type="password" id="passwordHash" name="passwordHash" placeholder="Password" class="form-control">
+			</div>
+			<br>
+			<!-- Button -->
+			<div class="form-group">
+				<input type="submit" class="btn btn-secondary btn-block" value="Login"/>
+			</div>
+			<!-- Invalid Entry -->		  
+			<div class="form-group alert alert-danger" th:if="${param.error}">Invalid Username or password</div>
+			<!-- Sign Up -->
+			<div class="form-footer">
+			  <p> Don't have an account? <a href="users/register.html" style="color: gray;" th:href="@{/users/register}">Sign Up</a></p>
+			</div>
+			<br>
+			<br>
+			</form>
+		  </section>
+		</section>
+	</section>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Footer -->
+	<footer th:replace="layout::site-footer"></footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::site-head">
+    <title>Comfy Blog Create Post</title>
+</head>
+<body>
+<header th:replace="layout::site-header"></header>	
+<br>
+<br>
+<br>
+<br>
+
+<!-- Page Content -->
+<div class="container">
+	<div class="row">
+	  	<div class="col-lg-8 col-md-10 mx-auto">
+
+			<!-- Success Message -->
+			<div class="form-group">
+				<div th:class="${successMessage} ? 'alert alert-secondary' : ''" th:text="${successMessage}"></div>
+			</div>	
+
+			<h2>Share Your Knowledge</h2>
+			<br>
+			<form action="#" th:action="@{/posts/create}" th:object="${post}" method="post">	
+				<!-- Title -->		
+				<div class="form-group">
+					<label>Title</label>
+					<input type="text" th:field="*{title}" th:class="${#fields.hasErrors('title') ? 'form-control is-invalid' : 'form-control'}" />
+					<div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="invalid-feedback"></div> 
+				</div>
+				<!-- Content -->
+				<div class="form-group">
+					<label>Content</label>
+					<textarea rows="7" cols="" th:field="*{body}" th:class="${#fields.hasErrors('body') ? 'form-control is-invalid' : 'form-control'}" ></textarea>				 
+					<div th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="invalid-feedback"></div>
+					<div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="invalid-feedback"></div>
+				</div>
+				<!-- Submit Button -->
+				<div class="form-group clearfix">
+					<button type="submit" class="btn btn-secondary float-right">Create Post</button>
+				</div>
+						
+			</form>		
+	
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Layout Footer -->	
+<footer th:replace="layout::site-footer"></footer>
+
+<!-- jQuery for Active Class Navigation-->	
+<script> 
+	$(function(){
+		var current_page_URL = location.href;
+  		$( "a" ).each(function() {
+     		if ($(this).attr("href") !== "#") {
+       			var target_URL = $(this).prop("href");
+       			if (target_URL == current_page_URL) {
+          			$('nav a').parents('li, ul').removeClass('active');
+          			$(this).parent('li').addClass('active');
+          			return false;
+       			}
+     		}
+  		});
+	});
+</script> 
+
+</body>
+</html>
